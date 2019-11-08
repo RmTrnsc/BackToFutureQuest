@@ -1,6 +1,5 @@
 <?php
 
-
 class TimeTravel
 {
   /**
@@ -12,16 +11,16 @@ class TimeTravel
    */
   private $end;
 
-  public function __construct()
+  public function __construct(DateTime $start, DateTime $end)
   {
-    $this->start = new DateTime();
-    $this->end = new DateTime();
+    $this->start = $start;
+    $this->end = $end;
   }
 
-  public function getTravelInfo($start, $end)
+  public function getTravelInfo()
   {
-    $diff = ($start)->diff($end);
-    return "Il s'est passé {$diff->y} années, {$diff->m} mois, {$diff->d} jours, 
+    $diff = ($this->start)->diff($this->end);
+    return "Il s'est passé {$diff->y} années, {$diff->m} mois, {$diff->d} jours,
     {$diff->h} heures, {$diff->i} minutes et {$diff->s} secondes depuis ma naissance";
   }
 
@@ -39,5 +38,41 @@ class TimeTravel
       array_push($date, $stopDate);
     }
     return $date;
+  }
+
+  /**
+   * @return DateTime
+   */
+  public function getStart(): DateTime
+  {
+    return $this->start;
+  }
+
+  /**
+   * @param DateTime $start
+   * @return TimeTravel
+   */
+  public function setStart(DateTime $start): TimeTravel
+  {
+    $this->start = $start;
+    return $this;
+  }
+
+  /**
+   * @return DateTime
+   */
+  public function getEnd(): DateTime
+  {
+    return $this->end;
+  }
+
+  /**
+   * @param DateTime $end
+   * @return TimeTravel
+   */
+  public function setEnd(DateTime $end): TimeTravel
+  {
+    $this->end = $end;
+    return $this;
   }
 }
